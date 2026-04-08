@@ -2,8 +2,13 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
-model = joblib.load('linear_regression_model.pkl')
+if not os.path.exists('linear_regression_model.pkl'):
+    st.error("Model file not found!")
+    st.stop()
+else:
+    model = joblib.load('linear_regression_model.pkl')
 
 st.title('Auto MPG Predictor')
 
